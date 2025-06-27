@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contador por Nome</title>
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nome {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .botao {
+            font-size: 18px;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            width: 150px;
+            height: 80px;
+            transition: transform 0.2s;
+        }
+
+        .botao:hover {
+            transform: scale(1.05);
+        }
+
+        .eduardo {
+            background-color: #007BFF;
+        }
+
+        .joao {
+            background-color: #28A745;
+        }
+
+        .lucas {
+            background-color: #FF5733;
+        }
+
+        /* Layout para telas pequenas (mobile) */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Contador de Cliques</h1>
+
+    <div class="container">
+        <div class="box">
+            <div class="nome">Eduardo</div>
+            <button class="botao eduardo" id="botao-Eduardo" onclick="incrementar('Eduardo')">0</button>
+        </div>
+        <div class="box">
+            <div class="nome">João</div>
+            <button class="botao joao" id="botao-João" onclick="incrementar('João')">0</button>
+        </div>
+        <div class="box">
+            <div class="nome">Lucas</div>
+            <button class="botao lucas" id="botao-Lucas" onclick="incrementar('Lucas')">0</button>
+        </div>
+    </div>
+
+    <script>
+        const nomes = ['Eduardo', 'João', 'Lucas'];
+
+        function carregarContagens() {
+            nomes.forEach(nome => {
+                const valor = localStorage.getItem(`contador-${nome}`) || 0;
+                document.getElementById(`botao-${nome}`).textContent = valor;
+            });
+        }
+
+        function incrementar(nome) {
+            const chave = `contador-${nome}`;
+            let valorAtual = parseInt(localStorage.getItem(chave)) || 0;
+            valorAtual++;
+            localStorage.setItem(chave, valorAtual);
+            document.getElementById(`botao-${nome}`).textContent = valorAtual;
+        }
+
+        // Inicializar ao carregar a página
+        carregarContagens();
+    </script>
+</body>
+
+</html>
