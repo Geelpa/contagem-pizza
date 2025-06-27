@@ -64,6 +64,23 @@
             background-color: #FF5733;
         }
 
+        .reset {
+            background-color: #dc3545;
+            margin-top: 40px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .reset:hover {
+            background-color: #b02a37;
+            transform: scale(1.05);
+        }
+
         /* Layout para telas pequenas (mobile) */
         @media (max-width: 600px) {
             .container {
@@ -93,6 +110,8 @@
         </div>
     </div>
 
+    <button class="reset" onclick="resetarContagens()">Resetar Contagem</button>
+
     <script>
         const nomes = ['Eduardo', 'João', 'Lucas'];
 
@@ -109,6 +128,16 @@
             valorAtual++;
             localStorage.setItem(chave, valorAtual);
             document.getElementById(`botao-${nome}`).textContent = valorAtual;
+        }
+
+        function resetarContagens() {
+            const confirmar = window.confirm("Tem certeza que deseja zerar todas as contagens?");
+            if (confirmar) {
+                nomes.forEach(nome => {
+                    localStorage.setItem(`contador-${nome}`, 0);
+                    document.getElementById(`botao-${nome}`).textContent = '0';
+                });
+            }
         }
 
         // Inicializar ao carregar a página
