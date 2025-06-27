@@ -3,18 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador por Nome</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #1e1e2f;
             color: #ffffff;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 40px;
+            padding: 20px;
+            margin: 0;
         }
 
         h1 {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            font-size: 28px;
         }
 
         .container {
@@ -28,6 +35,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
         }
 
         .nome {
@@ -43,7 +53,8 @@
             border-radius: 8px;
             color: white;
             cursor: pointer;
-            width: 150px;
+            width: 100%;
+            max-width: 250px;
             height: 80px;
             transition: transform 0.2s;
         }
@@ -74,6 +85,8 @@
             border: none;
             color: white;
             transition: background-color 0.2s, transform 0.2s;
+            width: 90%;
+            max-width: 300px;
         }
 
         .reset:hover {
@@ -81,12 +94,21 @@
             transform: scale(1.05);
         }
 
-        /* Layout para telas pequenas (mobile) */
+        /* Força o layout em coluna no mobile */
         @media (max-width: 600px) {
             .container {
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
+            }
+
+            .botao {
+                width: 90%;
+                max-width: 280px;
+            }
+
+            .reset {
+                margin-top: 30px;
             }
         }
     </style>
@@ -140,7 +162,6 @@
             }
         }
 
-        // Inicializar ao carregar a página
         carregarContagens();
     </script>
 </body>
